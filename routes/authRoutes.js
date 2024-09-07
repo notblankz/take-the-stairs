@@ -13,9 +13,6 @@ dotenv.config();
 
 const router = express.Router();
 
-// router.use(passport.initialize());
-// router.use(passport.session());
-
 router.get("/login", passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get("/redirect", passport.authenticate('google', {failureRedirect: "/"}), (req, res) => {
@@ -27,19 +24,6 @@ router.get("/redirect", passport.authenticate('google', {failureRedirect: "/"}),
 });
 
 router.get("/logout", async (req, res) => {
-    // add deletion from the DB
-    // req.logout((err) => {
-    //     if (err) {
-    //         return res.send("Error");
-    //     }
-    //     req.session.destroy((err) => {
-    //         if (err) {
-    //             return res.send("Error");
-    //         }
-    //         res.clearCookie('connect.sid');
-    //         res.redirect('/landing');
-    //     });
-    // });
     try {
         const {data, error} = await supabase.from('users').delete().eq('sub', req.user.sub);
         if (error) {
