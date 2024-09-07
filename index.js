@@ -6,6 +6,7 @@ import session from 'express-session';
 // Import Routes
 import authRouter from './routes/authRoutes.js';
 import landingRouter from './routes/landing.js';
+import srnRouter from './routes/srnForm.js'
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(passport.session());
 
 app.use('/api/auth/google', authRouter);
 app.use('/', landingRouter);
+app.use('/', srnRouter);
 
 app.get('/', (req, res) => {
     if (req.isAuthenticated()) {
