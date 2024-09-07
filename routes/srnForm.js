@@ -9,7 +9,7 @@ router.get("/srnForm", (req, res) => {
 
 router.post("/srnForm", async (req, res) => {
     const {data, error} = await supabase.from('users').update({
-        srn: req.body.srn.toLowerCase(),
+        srn: (req.body.srn).toLowerCase(),
         name: req.body.name
     }).eq('sub', req.user.sub)
     res.redirect("/")

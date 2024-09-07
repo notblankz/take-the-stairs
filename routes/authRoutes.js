@@ -1,6 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 import dotenv from 'dotenv';
+import supabase from '../config/supabaseConfig.js';
 
 function checkSRN(srn) {
     const srnRegex = /^pes[12]ug(20|21|22|23)(cs|am|ec)(00[1-9]|0[1-9][0-9]|[1-6][0-9][0-9]|700)$/i;
@@ -25,19 +26,45 @@ router.get("/redirect", passport.authenticate('google', {failureRedirect: "/"}),
     }
 });
 
-router.get("/logout", (req, res) => {
-    req.logout((err) => {
-        if (err) {
-            return res.send("Error");
+router.get("/logout", async (req, res) => {
+    // add deletion from the DB
+    // req.logout((err) => {
+    //     if (err) {
+    //         return res.send("Error");
+    //     }
+    //     req.session.destroy((err) => {
+    //         if (err) {
+    //             return res.send("Error");
+    //         }
+    //         res.clearCookie('connect.sid');
+    //         res.redirect('/landing');
+    //     });
+    // });
+    try {
+        const {data, error} = await supabase.from('users').delete().eq('sub', req.user.sub);
+        if (error) {
+            console.error("Error deleting user: ", error)
+            return res.status(500).send("Some unexpected error occured")
         }
-        req.session.destroy((err) => {
+
+        req.logout((err) => {
             if (err) {
-                return res.send("Error");
+                console.log(err);
+                return res.send("Error Logging Out")
             }
-            res.clearCookie('connect.sid');
-            res.redirect('/login');
-        });
-    });
+            req.session.destroy((err) => {
+                if (err) {
+                    console.error("Error destroying Session:", err)
+                    return res.send("Error destroying Session");
+                }
+                res.clearCookie("connect.sid");
+                res.redirect("/landing")
+            })
+        })
+    } catch (err) {
+        console.error("Unexpected error:", err);
+        res.status(500).send("Unexpected error occurred");
+    }
 });
 
 export default router;

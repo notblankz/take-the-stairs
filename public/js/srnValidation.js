@@ -6,7 +6,7 @@ form.addEventListener("submit", (e) => {
     const prnRegex = /PES[12](2022|2023|2024)\d{5}/i;
 
 
-    if (!srnRegex.test(srnInput.value) || !prnRegex.test(srnInput.value)) {
+    if (!srnRegex.test(srnInput.value) && !prnRegex.test(srnInput.value)) {
         e.preventDefault();
         alert("Please enter a valid SRN");
     }
