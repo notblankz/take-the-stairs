@@ -1,0 +1,23 @@
+body {
+    background-color: #265973;
+    color: #ccffff;
+    font-family: "Space Mono", monospace;
+    /* background-color: #03697b; Blue from the poster */
+}
+
+main > h1 {
+    font-size: 2em;
+    margin-top: 1.25em;
+    font-family: "Bricolage Grotesque", sans-serif;
+}
+
+main > p {
+    font-size: 1.15em;
+}
+
+.qr-container {
+    background-color: #001f3d;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    padding: 2em;
+    border-radius: 15px;
+}

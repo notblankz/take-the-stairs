@@ -8,6 +8,7 @@ import authRouter from './routes/authRoutes.js';
 import landingRouter from './routes/landing.js';
 import srnRouter from './routes/srnForm.js'
 import profileRouter from './routes/profile.js'
+import eventsRouter from './routes/events.js'
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use('/api/auth/google', authRouter);
 app.use('/', landingRouter);
 app.use('/', srnRouter);
 app.use('/', profileRouter);
+app.use('/', eventsRouter)
 
 app.get('/', (req, res) => {
     if (req.isAuthenticated()) {

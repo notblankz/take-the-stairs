@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     cameraID,
                     {
                         fps: 24,
-                        qrbox: 250
+                        qrbox: 250,
+                        aspectRatio: 1.0
                     },
 
                     qrCodeMessage => {

@@ -1,0 +1,26 @@
+.navbar {
+    height: 75px !important;
+    background-color: #001f3d;
+    font-family: "Bricolage Grotesque", sans-serif;
+}
+
+.nav-link {
+    font-size: 1.1em;
+}
+
+.navbar-brand {
+    color: #ccffff !important;
+    font-family: "Bricolage Grotesque";
+    font-weight: 900;
+}
+
+.offcanvas {
+    background-color: #001f3d !important;
+}
+
+.offcanvas-title {
+    font-family: "Bricolage Grotesque";
+    font-weight: 900;
+    color: #ccffff !important;
+    font-size: 2.5em;
+}

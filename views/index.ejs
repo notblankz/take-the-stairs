@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Take The Stairs</title>
     <script src="/js/qrScanner.min.js"></script>
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-    <div id="qrScanner"></div>
+
+<body class="p-3 m-0 border-0 bd-example m-0 border-0">
+    <nav class="navbar navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Health Fiesta</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h1 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h1>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Steps Leaderboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/events">Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="mx-3">
+        <h1 class=""><strong>Scan To Wellness</strong></h1>
+        <p class="mt-3">
+            Use our QR code scanner to access a wealth of health and wellness resources. Scan the QR code on the initial
+            floor, then scan another QR on the final floor to update and keep track of your step count.
+        </p>
+    </main>
+
+    <div class="qr-container mx-1 mt-4">
+        <div id="qrScanner"></div>
+    </div>
 </body>
+
 </html>

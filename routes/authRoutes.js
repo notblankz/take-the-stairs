@@ -24,31 +24,46 @@ router.get("/redirect", passport.authenticate('google', {failureRedirect: "/"}),
 });
 
 router.get("/logout", async (req, res) => {
-    try {
-        const {data, error} = await supabase.from('users').delete().eq('sub', req.user.sub);
-        if (error) {
-            console.error("Error deleting user: ", error)
-            return res.status(500).send("Some unexpected error occured")
-        }
+    // the commented one has the database deletion also
+    // try {
+    //     const {data, error} = await supabase.from('users').delete().eq('sub', req.user.sub);
+    //     if (error) {
+    //         console.error("Error deleting user: ", error)
+    //         return res.status(500).send("Some unexpected error occured")
+    //     }
 
-        req.logout((err) => {
+    //     req.logout((err) => {
+    //         if (err) {
+    //             console.log(err);
+    //             return res.send("Error Logging Out")
+    //         }
+    //         req.session.destroy((err) => {
+    //             if (err) {
+    //                 console.error("Error destroying Session:", err)
+    //                 return res.send("Error destroying Session");
+    //             }
+    //             res.clearCookie("connect.sid");
+    //             res.redirect("/landing")
+    //         })
+    //     })
+    // } catch (err) {
+    //     console.error("Unexpected error:", err);
+    //     res.status(500).send("Unexpected error occurred");
+    // }
+    req.logout((err) => {
+        if (err) {
+            console.error("Error logging out", err);
+            return res.send("Error Logging Out")
+        }
+        req.session.destroy((err) => {
             if (err) {
-                console.log(err);
-                return res.send("Error Logging Out")
+                console.error("Error Destroying Session:", err)
+                return res.send("Error destroying Session");
             }
-            req.session.destroy((err) => {
-                if (err) {
-                    console.error("Error destroying Session:", err)
-                    return res.send("Error destroying Session");
-                }
-                res.clearCookie("connect.sid");
-                res.redirect("/landing")
-            })
+            res.clearCookie("connect.sid");
+            res.redirect("/landing")
         })
-    } catch (err) {
-        console.error("Unexpected error:", err);
-        res.status(500).send("Unexpected error occurred");
-    }
+    })
 });
 
 export default router;

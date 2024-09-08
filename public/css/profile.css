@@ -1,0 +1,62 @@
+body {
+    font-family: "Space Mono", monospace;
+    color: #ccffff;
+    /* background-color: #001f3d; */
+    background-color: #265973;
+}
+
+.custom-card {
+    margin-top: 75px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    /* background-color: #001f3d; */
+    background-color: #265973;
+}
+
+.step-count {
+    /* color: #005f8f; */
+    /* color: #001f3d; */
+    color: #ffe16b;
+    font-size: 5em;
+    position: relative;
+    padding-bottom: 50px;
+    font-weight: 900;
+}
+
+.step-count::after {
+    padding-bottom: 25px;
+    content: "Steps";
+    position: absolute;
+    font-size: 0.3em;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.details {
+    width: 100%;
+    align-self: flex-start;
+}
+
+.detail-heading {
+    color: #83a4a9;
+    font-size: 14px;
+    margin: 0;
+}
+
+.logout-form {
+    padding-top: 25px;
+    align-self: flex-end;
+}
+
+.logout-form > button {
+    /* background-color: #001f3d; */
+    background-color: #265973;
+    border: 1px solid #ccffff;
+    color: #ccffff;
+    padding-inline: 15px;
+    padding-block: 7px;
+}

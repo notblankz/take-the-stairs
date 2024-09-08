@@ -1,0 +1,108 @@
+/* body {
+    border: 1px solid red;
+    font-family: "Space Mono", monospace;
+    background-color: #265973;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    color: #ccffff;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 2em;
+    font-weight: 900;
+}
+
+p {
+    color: #ccffff;
+}
+
+label {
+    color: #ccffff;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    background-color: #265973;
+    outline: 1px solid #ccffff;
+    border: none;
+}
+
+button {
+    background-color: #ccffff;
+    color: #265973;
+} */
+
+/* CSS for the SRN Form */
+body {
+    background-color: #265973;
+    color: white;
+    font-family: 'Space Mono', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: #327380;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    background-color: #0b1d27;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+input[type="text"]::placeholder {
+    color: #7a8c99;
+}
+
+button {
+    background-color: #b2e8f3;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #9dd3de;
+}
