@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         isScanning = true;
                         try {
                             qrScanner.pause()
-                            const response = await fetch(`https://2e47-171-76-83-71.ngrok-free.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
+                            const response = await fetch(`https://take-the-stairs.vercel.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
                                 method: 'POST'
                             })
                             const text = await response.text()
