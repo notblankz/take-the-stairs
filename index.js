@@ -4,6 +4,9 @@ import passport from './controllers/authController.js';
 import session from 'express-session';
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'url';
+// import RedisStore from 'connect-redis';
+// import redis from "redis"
+import pg from "pg"
 
 dotenv.config()
 
@@ -27,7 +30,33 @@ app.use(express.json());
 app.use(urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")))
 
+// PgPool Implementation with supabase
+const pool = new pg.Pool({
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASS,
+    port: process.env.DB_PORT,
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
+
+pool.connect((err, client, release) => {
+    if (err) {
+        console.error("Error connecting to db", err);
+    } else {
+        console.log("Successfully connected")
+    }
+})
+
+const pgSession = (await import("connect-pg-simple")).default(session)
+
 app.use(session({
+    store: new pgSession({
+        pool: pool,
+        tableName: "user_session"
+    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
@@ -38,6 +67,29 @@ app.use(session({
         sameSite: 'lax'
     }
 }));
+
+// Redis Implementation
+// const RedisClient = redis.createClient({
+//     password: process.env.REDIS_PASS,
+//     url: process.env.REDIS_URL,
+// })
+
+// RedisClient.connect()
+
+// app.use(session({
+//     store: new RedisStore({
+//         client: RedisClient
+//     }),
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//         maxAge: 48 * 60 * 60 * 1000,
+//         secure: false,
+//         httpOnly: true,
+//         sameSite: 'lax'
+//     }
+// }));
 
 app.use(passport.initialize())
 app.use(passport.session());
