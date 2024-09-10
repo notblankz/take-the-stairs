@@ -3,6 +3,7 @@ import express, { urlencoded } from 'express';
 import passport from './controllers/authController.js';
 import session from 'express-session';
 import dotenv from 'dotenv'
+import { fileURLToPath } from 'url';
 
 dotenv.config()
 
@@ -12,10 +13,15 @@ import landingRouter from './routes/landing.js';
 import srnRouter from './routes/srnForm.js'
 import profileRouter from './routes/profile.js'
 import eventsRouter from './routes/events.js'
+import path from 'path';
 
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, 'views'))
 
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
