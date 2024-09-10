@@ -27,7 +27,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                         try {
                             qrScanner.pause()
                             const response = await fetch(`https://take-the-stairs.vercel.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
-                                method: 'POST'
+                                method: 'POST',
+                                headers: {
+                                    'Access-Control-Allow-Origin': "https://take-the-stairs.vercel.app"
+                                }
                             })
                             const text = await response.text()
                             if (response.ok) {
