@@ -70,7 +70,7 @@ app.use(session({
 }));
 
 app.use(cors({
-    origin: "*",
+    origin: "https://take-the-stairs.vercel.app",
     methods: ["POST", "GET"]
 }))
 
