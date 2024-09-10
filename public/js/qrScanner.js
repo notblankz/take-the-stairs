@@ -1,6 +1,5 @@
 import { Html5Qrcode } from "html5-qrcode";
 
-let cameraID;
 let isScanning = false;
 
 document.addEventListener('DOMContentLoaded', async () => {
