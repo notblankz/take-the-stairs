@@ -1,6 +1,7 @@
 import { Html5Qrcode } from "html5-qrcode";
 
 let cameraID;
+let isScanning = false;
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -15,13 +16,34 @@ document.addEventListener('DOMContentLoaded', async () => {
                 qrScanner.start(
                     cameraID,
                     {
-                        fps: 24,
+                        fps: 10,
                         qrbox: 250,
                         aspectRatio: 1.0
                     },
 
-                    qrCodeMessage => {
-                        alert("The qr code says: " + qrCodeMessage)
+                    async (qrCodeMessage) => {
+                        if (isScanning) return;
+                        isScanning = true;
+                        try {
+                            qrScanner.pause()
+                            const response = await fetch(`https://2e47-171-76-83-71.ngrok-free.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
+                                method: 'POST'
+                            })
+                            const text = await response.text()
+                            if (response.ok) {
+                                alert(`Success: ${text}`)
+                            } else {
+                                alert(`Error ${response.status}: ${text}`);
+                            }
+                        } catch (e) {
+                            console.error("Error fetching data:", e);
+                            alert(`Fetch Error: ${e.message}`);
+                        }
+
+                        setTimeout(() => {
+                            isScanning = false;
+                            qrScanner.resume()
+                        }, 2000);
                     },
 
                     errorMessage => {

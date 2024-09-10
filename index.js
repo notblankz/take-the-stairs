@@ -4,9 +4,9 @@ import passport from './controllers/authController.js';
 import session from 'express-session';
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'url';
-// import RedisStore from 'connect-redis';
-// import redis from "redis"
 import pg from "pg"
+import path from 'path';
+import cors from 'cors'
 
 dotenv.config()
 
@@ -16,7 +16,7 @@ import landingRouter from './routes/landing.js';
 import srnRouter from './routes/srnForm.js'
 import profileRouter from './routes/profile.js'
 import eventsRouter from './routes/events.js'
-import path from 'path';
+import addStepsRouter from './routes/addSteps.js'
 
 const app = express();
 
@@ -37,9 +37,10 @@ const pool = new pg.Pool({
     database: process.env.DB_NAME,
     password: process.env.DB_PASS,
     port: process.env.DB_PORT,
-    // ssl: {
-    //     rejectUnauthorized: false
-    // }
+    // remove during prod
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 pool.connect((err, client, release) => {
@@ -68,33 +69,16 @@ app.use(session({
     }
 }));
 
-// Redis Implementation
-// const RedisClient = redis.createClient({
-//     password: process.env.REDIS_PASS,
-//     url: process.env.REDIS_URL,
-// })
-
-// RedisClient.connect()
-
-// app.use(session({
-//     store: new RedisStore({
-//         client: RedisClient
-//     }),
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: {
-//         maxAge: 48 * 60 * 60 * 1000,
-//         secure: false,
-//         httpOnly: true,
-//         sameSite: 'lax'
-//     }
-// }));
+app.use(cors({
+    origin: "*",
+    methods: ["POST", "GET"]
+}))
 
 app.use(passport.initialize())
 app.use(passport.session());
 
 app.use('/api/auth/google', authRouter);
+app.use('/api/addSteps', addStepsRouter)
 app.use('/', landingRouter);
 app.use('/', srnRouter);
 app.use('/', profileRouter);
