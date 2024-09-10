@@ -2,6 +2,9 @@
 import express, { urlencoded } from 'express';
 import passport from './controllers/authController.js';
 import session from 'express-session';
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 // Import Routes
 import authRouter from './routes/authRoutes.js';
@@ -47,6 +50,8 @@ app.get('/', (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log('Server is running');
 });
