@@ -12,9 +12,9 @@ dotenv.config()
 const router = express.Router();
 const cryptr = new Cryptr(process.env.DECRYPT_SALT)
 
-router.post("/saveFloor/:encrypted_floor", async (req, res) => {
+router.post("/saveFloor/:encryptedFloor", async (req, res) => {
     if (req.isAuthenticated()) {
-        const scannedFloor = cryptr.decrypt(req.params.encrypted_floor);
+        const scannedFloor = cryptr.decrypt(req.params.encryptedFloor);
         const { data, error } = await supabase.from("users").select().eq('sub', req.user.sub);
 
         if (!data || error) {

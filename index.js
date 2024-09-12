@@ -37,9 +37,8 @@ const pool = new pg.Pool({
     database: process.env.DB_NAME,
     password: process.env.DB_PASS,
     port: process.env.DB_PORT,
-    // remove during prod
     ssl: {
-        rejectUnauthorized: false
+        rejectUnauthorized: (process.env.NODE_ENV === "development") ? false : true
     }
 });
 
