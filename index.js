@@ -69,13 +69,8 @@ app.use(session({
     }
 }));
 
-// app.use(cors({
-//     origin: "https://take-the-stairs.vercel.app",
-//     methods: ["POST", "GET"]
-// }))
-
 app.use(cors({
-    origin: "https://2b55-61-12-83-162.ngrok-free.app",
+    origin: "https://take-the-stairs.vercel.app",
     methods: ["POST", "GET"]
 }))
 

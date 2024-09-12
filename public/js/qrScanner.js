@@ -38,16 +38,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                         isScanning = true;
                         try {
                             qrScanner.pause()
-                            // const response = await fetch(`https://take-the-stairs.vercel.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
-                            //     method: 'POST',
-                            //     headers: {
-                            //         'Access-Control-Allow-Origin': "https://take-the-stairs.vercel.app"
-                            //     }
-                            // })
-                            const response = await fetch(`https://2b55-61-12-83-162.ngrok-free.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
+                            const response = await fetch(`https://take-the-stairs.vercel.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
                                 method: 'POST',
                                 headers: {
-                                    'Access-Control-Allow-Origin': "https://2b55-61-12-83-162.ngrok-free.app"
+                                    'Access-Control-Allow-Origin': "https://take-the-stairs.vercel.app"
                                 }
                             })
                             const text = await response.text()
