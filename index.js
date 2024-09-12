@@ -59,7 +59,7 @@ app.use(session({
         tableName: "user_session"
     }),
     secret: process.env.SESSION_SECRET,
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: {
         maxAge: 48 * 60 * 60 * 1000,
@@ -69,8 +69,13 @@ app.use(session({
     }
 }));
 
+// app.use(cors({
+//     origin: "https://take-the-stairs.vercel.app",
+//     methods: ["POST", "GET"]
+// }))
+
 app.use(cors({
-    origin: "https://take-the-stairs.vercel.app",
+    origin: "https://2b55-61-12-83-162.ngrok-free.app",
     methods: ["POST", "GET"]
 }))
 

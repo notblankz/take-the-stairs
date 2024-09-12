@@ -1,10 +1,10 @@
 body {
     font-family: "Space Mono", monospace;
-    background-color: #265973;
+    background-color: #1a3c3c;
 }
 
 nav {
-    background-color: #005f8f;
+    background-color: #ddf8ff;
     color: #ccffff;
 }
 
@@ -13,32 +13,38 @@ nav {
 }
 
 .top-content {
-    background-color: #005f8f;
-    color: #ccffff;
+    /* background-color: #005f8f; */
+    background-color: #ddf8ff;
+    /* color: #ccffff; */
+    color: #073222;
 }
 
 .top-content > h1 {
     /* color: #ffe16b; ardra */
+    text-align: center;
     font-family: "Bricolage Grotesque", sans-serif;
     font-size: 2em;
     font-weight: 900;
 }
 
 .top-content > p {
+    text-align: center;
     font-size: 1.1em;
     line-height: 1.6em;
 }
 
 .sign-in-btn {
-    background-color: #ccffff;
-    color: #005f8f;
+    background-color: #1a3c3c;
+    color: #ffffff;
     border: 0;
     height: 50px;
     border-radius: 5px;
 }
 
 .bottom-content {
-    background-color: #265973;
+    background-color: #1a3c3c;
+    color: #ddf8ff;
+    /* background-color: #265973; */
     /* background-color: #03697b; ardra */
     color: #ccffff;
 }

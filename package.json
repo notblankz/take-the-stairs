@@ -10,10 +10,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "@supabase/supabase-js": "^2.45.3",
+    "bootstrap": "^5.3.3",
     "connect-pg-simple": "^9.0.1",
     "connect-redis": "^7.1.1",
     "cors": "^2.8.5",
+    "cryptr": "^6.3.0",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",

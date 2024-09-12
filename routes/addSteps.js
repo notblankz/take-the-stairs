@@ -1,57 +1,20 @@
-// import express from "express"
-// import supabase from "../config/supabaseConfig.js"
+// New Approach
+// get the encrypted text from the url request -> decrypt the encrypted stuff -> check info -> then make the changes
 
-// const router = express.Router()
-
-// router.post("/saveFloor/:floor", async (req, res) => {
-//     if (req.isAuthenticated()) {
-//         console.log("Request Received")
-//         const scannedFloor = req.params.floor
-//         const {data, error} = await supabase.from("users").select().eq('sub', req.user.sub);
-
-//         if (scannedFloor == parseInt(data[0].floorState.initial)) {
-//             console.log("Initial = Scanned")
-//             res.status(406);
-//         }
-
-//         if (data[0].floorState.initial == null) {
-//             console.log("Add Initial")
-//             if (parseInt(scannedFloor) != NaN) {
-//                 try {
-//                     const {data, error} = await supabase.from("users").update({floorState: {initial: scannedFloor, final: null }}).eq('sub', req.user.sub)
-//                     res.status(200);
-//                 } catch (err) {
-//                     res.status(404)
-//                 }
-//             } else {
-//                 res.status(500);
-//             }
-//         } else {
-//             console.log("Add Steps")
-//             const {data, error} = await supabase.from("users").select().eq('sub', req.user.sub)
-//             const initialFloor = data[0].floorState.initial
-//             const climbedFloors = Math.abs(initialFloor - scannedFloor)
-//             const steps = climbedFloors * 75;
-//             const {updateData, err} = await supabase.from('users').update({stepCount: steps, floorState: {initial: null, final: null}}).eq('sub', req.user.sub);
-//             // res.send(`Floors Climbed: ${climbedFloors}, Steps Calculated: ${steps}, DB Update: <>`)
-//             res.status(200);
-//         }
-//     } else {
-//         console.log("Get Authenticated first")
-//         res.send(401)
-//     }
-// })
-
-// export default router
 
 import express from "express";
 import supabase from "../config/supabaseConfig.js";
+import Cryptr from "cryptr";
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const router = express.Router();
+const cryptr = new Cryptr(process.env.DECRYPT_SALT)
 
-router.post("/saveFloor/:floor", async (req, res) => {
+router.post("/saveFloor/:encrypted_floor", async (req, res) => {
     if (req.isAuthenticated()) {
-        const scannedFloor = req.params.floor;
+        const scannedFloor = cryptr.decrypt(req.params.encrypted_floor);
         const { data, error } = await supabase.from("users").select().eq('sub', req.user.sub);
 
         if (!data || error) {
@@ -77,7 +40,6 @@ router.post("/saveFloor/:floor", async (req, res) => {
                 return res.status(500).send("Invalid floor data");
             }
         } else {
-            console.log("Adding Steps");
             const initialFloor = data[0].floorState.initial;
             const climbedFloors = Math.abs(initialFloor - scannedFloor);
             const steps = parseInt(data[0].stepCount) + (climbedFloors * 75);

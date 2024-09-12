@@ -1,8 +1,13 @@
 import { Html5Qrcode } from "html5-qrcode";
+import 'bootstrap';
+import { Offcanvas } from "bootstrap";
 
 let isScanning = false;
+// const offCanvasInstance = new bootstrap.Offcanvas(offCanvasElement)
+// console.log(offCanvasInstance)
 
 document.addEventListener('DOMContentLoaded', async () => {
+    const myOffCanvas = document.getElementById("offcanvasDarkNavbar");
     try {
         const devices = await Html5Qrcode.getCameras()
         if (devices && devices.length) {
@@ -10,6 +15,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             // const cameraID = devices[0].id
             console.log(devices)
             const qrScanner = new Html5Qrcode("qrScanner")
+
+            myOffCanvas.addEventListener("shown.bs.offcanvas", () => {
+                qrScanner.pause()
+            })
+
+            myOffCanvas.addEventListener("hidden.bs.offcanvas", () => {
+                qrScanner.resume()
+            })
 
             try {
                 qrScanner.start(
@@ -25,10 +38,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                         isScanning = true;
                         try {
                             qrScanner.pause()
-                            const response = await fetch(`https://take-the-stairs.vercel.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
+                            // const response = await fetch(`https://take-the-stairs.vercel.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
+                            //     method: 'POST',
+                            //     headers: {
+                            //         'Access-Control-Allow-Origin': "https://take-the-stairs.vercel.app"
+                            //     }
+                            // })
+                            const response = await fetch(`https://2b55-61-12-83-162.ngrok-free.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
                                 method: 'POST',
                                 headers: {
-                                    'Access-Control-Allow-Origin': "https://take-the-stairs.vercel.app"
+                                    'Access-Control-Allow-Origin': "https://2b55-61-12-83-162.ngrok-free.app"
                                 }
                             })
                             const text = await response.text()
