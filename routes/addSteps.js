@@ -32,7 +32,7 @@ router.post("/saveFloor/:encryptedFloor", async (req, res) => {
                     if (error) {
                         return res.status(500).send("Error updating initial floor");
                     }
-                    return res.status(200).send("Initial floor updated successfully");
+                    return res.status(200).send(`Initial floor: ${scannedFloor}`);
                 } catch (err) {
                     return res.status(500).send("Server error");
                 }
