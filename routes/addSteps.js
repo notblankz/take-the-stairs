@@ -1,7 +1,3 @@
-// New Approach
-// get the encrypted text from the url request -> decrypt the encrypted stuff -> check info -> then make the changes
-
-
 import express from "express";
 import supabase from "../config/supabaseConfig.js";
 import Cryptr from "cryptr";
@@ -13,7 +9,7 @@ const router = express.Router();
 const cryptr = new Cryptr(process.env.DECRYPT_SALT)
 
 router.post("/saveFloor/:encryptedFloor", async (req, res) => {
-    // if (req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         const scannedFloor = cryptr.decrypt(req.params.encryptedFloor);
         const { data, error } = await supabase.from("users").select().eq('sub', req.user.sub);
 
@@ -50,10 +46,10 @@ router.post("/saveFloor/:encryptedFloor", async (req, res) => {
             }
             return res.status(200).send(`Floors Climbed: ${climbedFloors}, Steps: ${steps}`);
         }
-    // } else {
-    //     console.log("Get Authenticated first");
-    //     return res.status(401).send("Unauthorized");
-    // }
+    } else {
+        console.log("Get Authenticated first");
+        return res.status(401).send("Unauthorized");
+    }
 });
 
 export default router;
