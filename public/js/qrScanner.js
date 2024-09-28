@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     },
 
                     async (qrCodeMessage) => {
+                        alert("QR Scanned");
                         if (isScanning) return;
                         isScanning = true;
                         try {
