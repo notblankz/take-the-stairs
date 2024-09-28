@@ -24,7 +24,7 @@ router.get("/redirect", passport.authenticate('google', {failureRedirect: "/"}),
 });
 
 router.get("/logout", async (req, res) => {
-    // the commented one has the database deletion also
+    // the commented one has the database deletion also (this shd be deleted soon)
     // try {
     //     const {data, error} = await supabase.from('users').delete().eq('sub', req.user.sub);
     //     if (error) {
