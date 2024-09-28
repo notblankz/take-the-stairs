@@ -26,19 +26,20 @@ router.post("/saveFloor/:encryptedFloor", async (req, res) => {
         }
 
         if (data[0].floorState.initial == null) {
-            if (!isNaN(parseInt(scannedFloor))) {
-                try {
-                    const { error } = await supabase.from("users").update({ floorState: { initial: scannedFloor, final: null } }).eq('sub', req.user.sub);
-                    if (error) {
-                        return res.status(500).send("Error updating initial floor");
-                    }
-                    return res.status(200).send(`Initial floor: ${scannedFloor}`);
-                } catch (err) {
-                    return res.status(500).send("Server error");
-                }
-            } else {
-                return res.status(500).send("Invalid floor data");
-            }
+            res.send("Working");
+            // if (!isNaN(parseInt(scannedFloor))) {
+            //     try {
+            //         // const { error } = await supabase.from("users").update({ floorState: { initial: scannedFloor, final: null } }).eq('sub', req.user.sub);
+            //         // if (error) {
+            //         //     return res.status(500).send("Error updating initial floor");
+            //         // }
+            //         // return res.status(200).send(`Initial floor: ${scannedFloor}`);
+            //     } catch (err) {
+            //         return res.status(500).send("Server error");
+            //     }
+            // } else {
+            //     return res.status(500).send("Invalid floor data");
+            // }
         } else {
             const initialFloor = data[0].floorState.initial;
             const climbedFloors = Math.abs(initialFloor - scannedFloor);
