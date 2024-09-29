@@ -3,10 +3,9 @@ import 'bootstrap';
 import { Offcanvas } from "bootstrap";
 
 let isScanning = false;
-// const offCanvasInstance = new bootstrap.Offcanvas(offCanvasElement)
-// console.log(offCanvasInstance)
 
 document.addEventListener('DOMContentLoaded', async () => {
+    const loader = document.querySelector(".loader")
     const myOffCanvas = document.getElementById("offcanvasDarkNavbar");
     try {
         const devices = await Html5Qrcode.getCameras()
@@ -34,10 +33,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     },
 
                     async (qrCodeMessage) => {
-                        alert("QR Scanned");
                         if (isScanning) return;
                         isScanning = true;
                         try {
+                            loader.removeAttribute("hidden");
                             qrScanner.pause()
                             const response = await fetch(`https://take-the-stairs.vercel.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
                                 method: 'POST',
@@ -46,6 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 }
                             })
                             const text = await response.text()
+                            loader.setAttribute("hidden", true);
                             if (response.ok) {
                                 alert(`Success: ${text}`)
                             } else {

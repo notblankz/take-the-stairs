@@ -24,32 +24,6 @@ router.get("/redirect", passport.authenticate('google', {failureRedirect: "/"}),
 });
 
 router.get("/logout", async (req, res) => {
-    // the commented one has the database deletion also (this shd be deleted soon)
-    // try {
-    //     const {data, error} = await supabase.from('users').delete().eq('sub', req.user.sub);
-    //     if (error) {
-    //         console.error("Error deleting user: ", error)
-    //         return res.status(500).send("Some unexpected error occured")
-    //     }
-
-    //     req.logout((err) => {
-    //         if (err) {
-    //             console.log(err);
-    //             return res.send("Error Logging Out")
-    //         }
-    //         req.session.destroy((err) => {
-    //             if (err) {
-    //                 console.error("Error destroying Session:", err)
-    //                 return res.send("Error destroying Session");
-    //             }
-    //             res.clearCookie("connect.sid");
-    //             res.redirect("/landing")
-    //         })
-    //     })
-    // } catch (err) {
-    //     console.error("Unexpected error:", err);
-    //     res.status(500).send("Unexpected error occurred");
-    // }
     req.logout((err) => {
         if (err) {
             console.error("Error logging out", err);
@@ -60,6 +34,7 @@ router.get("/logout", async (req, res) => {
                 console.error("Error Destroying Session:", err)
                 return res.send("Error destroying Session");
             }
+            const {data, erorr} = supabase.from('user_session').delete().eq('sid', req.sessionID);
             res.clearCookie("connect.sid");
             res.redirect("/landing")
         })
