@@ -55,30 +55,14 @@ export default passport.use(
             //     done(null, profile);
             // }
 
-            const srn = profile.email.includes("@pesu.pes.edu") ? profile.email.split('@')[0] : null;
+            const { data, error } = await supabase.from("users").upsert({
+                sub: profile.sub,
+                srn: profile.email.split('@')[0],
+                name: profile.displayName,
+                email: profile.email,
+            })
+            done(null, profile);
 
-            if (srn) {
-                const {data: existingUser, error: checkError} = await supabase.from("users").select("*").eq("srn", srn).single()
-
-                if (existingUser) {
-                    done(null, false, {message: "An account with this SRN already exists please sign in with that gmail account"})
-                } else {
-                    const {data, error} = await supabase.from("users").upsert({
-                        sub: profile.sub,
-                        srn: srn,
-                        name: profile.displayName,
-                        email: profile.email,
-                    })
-                }
-            } else {
-                const { data, error } = await supabase.from("users").upsert({
-                    sub: profile.sub,
-                    srn: null,
-                    name: profile.displayName,
-                    email: profile.email,
-                })
-                done(null, profile);
-            }
         }
     )
 );
