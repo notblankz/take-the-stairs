@@ -13,6 +13,9 @@ passport.deserializeUser((user, done) => {
     done(null, user);
 })
 
+// check if a user exists first, if that is the case then just send an error message and then dont do anything
+// otherwise just add it to the db
+
 export default passport.use(
     new Strategy(
         {
@@ -21,47 +24,32 @@ export default passport.use(
             callbackURL: process.env.GOOGLE_CALLBACK_URL,
         }, async (accessToken, refreshToken, profile, done) => {
 
-            // const srn = profile.email.includes("@pesu.pes.edu") ? profile.email.split('@')[0] : null;
+            const srn = profile.email.includes("@pesu.pes.edu") ? profile.email.split('@')[0] : null;
 
-            // if (srn) {
-            //     const { data: existingUser, error: checkError } = await supabase.from("users").select("*").eq("srn", srn).single()
+            if (srn) {
+                const { data: existingUser, error: checkError } = await supabase.from("users").select("*").eq("srn", srn);
+                if (existingUser) {
+                    console.log("User exists, give error");
+                    return done(null, false, { message: "Account already exists, login from that account" })
+                }
+            }
 
-            //     if (existingUser) {
-            //         const { data: updatedUser, error: updateError } = await supabase
-            //             .from("users")
-            //             .update({
-            //                 sub: profile.sub,
-            //                 name: profile.displayName,
-            //                 email: profile.email,
-            //             })
-            //             .eq("srn", srn);
-            //         done(null, updatedUser ? profile : false);
-            //     } else {
-            //         const { data, error } = await supabase.from("users").upsert({
-            //             sub: profile.sub,
-            //             srn: srn,
-            //             name: profile.displayName,
-            //             email: profile.email,
-            //         });
-            //         done(null, profile);
-            //     }
-            // } else {
-            //     const { data, error } = await supabase.from("users").upsert({
-            //         sub: profile.sub,
-            //         srn: null,
-            //         name: profile.displayName,
-            //         email: profile.email,
-            //     });
-            //     done(null, profile);
-            // }
-
+            console.log("User does not exist, adding user to db")
             const { data, error } = await supabase.from("users").upsert({
                 sub: profile.sub,
                 srn: profile.email.split('@')[0],
                 name: profile.displayName,
                 email: profile.email,
             })
-            done(null, profile);
+            return done(null, profile);
+
+            // const { data, error } = await supabase.from("users").upsert({
+            //     sub: profile.sub,
+            //     srn: profile.email.split('@')[0],
+            //     name: profile.displayName,
+            //     email: profile.email,
+            // })
+            // done(null, profile);
 
         }
     )

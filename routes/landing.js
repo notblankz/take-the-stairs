@@ -3,7 +3,8 @@ import express from 'express';
 const router = express.Router();
 
 router.get("/landing", (req, res) => {
-    res.render("landing");
+    const errorMessage = req.query.error;
+    res.render("landing", {errorMessage});
 })
 
 export default router;

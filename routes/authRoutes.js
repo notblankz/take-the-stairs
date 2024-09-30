@@ -14,7 +14,7 @@ function checkSRN(srn) {
 
 router.get("/login", passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-router.get("/redirect", passport.authenticate('google', { failureRedirect: "/" }), (req, res) => {
+router.get("/redirect", passport.authenticate('google', { failureRedirect: "/landing?error=Account%20already%20exists%2C%20login%20from%20that%20account" }), (req, res) => {
     if (checkSRN(req.user.email.split("@")[0])) {
         res.redirect("/");
     } else {
