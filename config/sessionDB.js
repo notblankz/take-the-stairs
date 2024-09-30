@@ -12,7 +12,7 @@ const pool = new pg.Pool({
     port: process.env.DB_PORT,
     // changes
     ssl : {
-        rejectUnauthorized: false,
+        rejectUnauthorized: true,
     }
 });
 
