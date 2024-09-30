@@ -15,6 +15,7 @@ import srnRouter from './routes/srnForm.js';
 import profileRouter from './routes/profile.js';
 import eventsRouter from './routes/events.js';
 import addStepsRouter from './routes/addSteps.js';
+import leaderboardRouter from './routes/leaderboard.js'
 
 const app = express();
 
@@ -36,8 +37,8 @@ app.use(session({
         tableName: "user_session"
     }),
     secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
         maxAge: 48 * 60 * 60 * 1000,
         secure: false,
@@ -60,6 +61,7 @@ app.use('/', landingRouter);
 app.use('/', srnRouter);
 app.use('/', profileRouter);
 app.use('/', eventsRouter);
+app.use('/', leaderboardRouter);
 
 app.get('/', (req, res) => {
     if (req.isAuthenticated()) {

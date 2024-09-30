@@ -1,0 +1,54 @@
+body {
+    background-color: #ddf8ff;
+    color: #1a3c3c;
+    font-family: "Space Mono", monospace;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.table-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    gap: 24px;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid red;
+    padding: 5px;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px;
+}
+
+.top-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

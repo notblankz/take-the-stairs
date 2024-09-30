@@ -48,7 +48,7 @@ router.post("/saveFloor/:encryptedFloor", async (req, res) => {
         }
     } else {
         console.log("Get Authenticated first");
-        return res.status(401).send("Unauthorized");
+        return res.status(401).send("Unauthorized"); // can change this to res.redirect("/")
     }
 });
 
