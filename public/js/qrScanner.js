@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         try {
                             loader.removeAttribute("hidden");
                             qrScanner.pause()
-                            const response = await fetch(`https://e1e3-171-76-81-214.ngrok-free.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
+                            const response = await fetch(`https://take-the-stairs.vercel.app/api/addSteps/saveFloor/${qrCodeMessage}`, {
                                 method: 'POST',
                                 headers: {
                                     'Access-Control-Allow-Origin': "https://take-the-stairs.vercel.app"
