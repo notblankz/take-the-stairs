@@ -5,16 +5,15 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const pool = new pg.Pool({
-    // user: process.env.DB_USER,
-    // host: process.env.DB_HOST,
-    // database: process.env.DB_NAME,
-    // password: process.env.DB_PASS,
-    // port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASS,
+    port: process.env.DB_PORT,
     // changes
-    connectionString: process.env.DB_URL,
-    ssl : {
-        rejectUnauthorized: true,
-    }
+    // ssl : {
+    //     rejectUnauthorized: false,
+    // }
 });
 
 // Handling connection errors
