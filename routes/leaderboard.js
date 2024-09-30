@@ -7,10 +7,7 @@ router.get("/leaderboard", async (req, res) => {
 
     const {data, error} = await supabase.from("users").select().limit(10).order("stepCount", {ascending : false});
 
-    console.log(data);
-
     res.render("leaderboard", {data : data});
-    // res.send("<-- LeaderBoard Baby -->");
 })
 
 export default router
