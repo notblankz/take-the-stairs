@@ -30,14 +30,12 @@ export default passport.use(
                 console.log("existing user: ", existingUser);
 
                 if (existingUser.length != 0) {
+                    if (existingUser[0].sub == profile.sub) {
+                        return done(null, profile);
+                    }
                     console.log("User exists, give error");
                     return done(null, false, { message: "Account already exists, login from that account" })
                 }
-
-                if (existingUser[0].sub == profile.sub) {
-                    return done(null, profile);
-                }
-
             }
 
             console.log("User does not exist, adding user to db")
