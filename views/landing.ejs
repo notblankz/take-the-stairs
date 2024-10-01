@@ -14,12 +14,24 @@
 
 <body class="p-0 m-0 border-0 mb-0">
 
+    <div id="overlay"></div>
+
     <% if (errorMessage) { %>
         <div id="error-alert" class="alert alert-danger alert-dismissible fade show" role="alert">
             <%= errorMessage %>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <% } %>
+
+        <div id="signin-warning" class="alert alert-warning">
+            <a id="closeBtn" style="text-align: right;"><button>Close</button></a>
+
+            <div>
+                It is recommended to use your <strong>college provided google email</strong>, but you can also login with any gmail account but make sure to <strong>type your SRN/PRN and Name correctly</strong> when prompted later. Since it will be used to display on leaderboard
+            </div>
+
+            <a href="/api/auth/google/login" style="text-decoration: none; text-align: right;"><button>Continue</button></a>
+        </div>
 
             <div class="top-content p-3">
                 <h1 class="mt-4">Health Fiesta 2024</h1>
@@ -29,36 +41,11 @@
                     well-being.
                 </p>
 
-                <!-- <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-                    <symbol id="check-circle-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                    </symbol>
-                    <symbol id="info-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-                    </symbol>
-                    <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                    </symbol>
-                </svg>
-
-                <div class="alert alert-primary d-flex align-items-center gap-2" role="alert">
-                    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Info:">
-                        <use xlink:href="#info-fill" />
-                    </svg>
-                    <div>
-                        <em>It is recommended to use your <strong>college provided google email</strong>, but you can also login with any gmail account but make sure to <strong>type your SRN/PRN and Name correctly</strong> when prompted later. Since it will be displayed on the leaderboards.</em>
-                    </div>
-                </div> -->
-                <div class="alert alert-warning" role="alert">
-                    <em>It is recommended to use your <strong>college provided google email</strong>, but you can also login with any gmail account but make sure to <strong>type your SRN/PRN and Name correctly</strong> when prompted later. Since it will be displayed on the leaderboards</em>
-                </div>
-
-                <a style="text-decoration: none;" href="/api/auth/google/login"><button
-                        class="w-100 mb-5 sign-in-btn">Sign
-                        In</button></a>
+                <!-- <a style="text-decoration: none;"> -->
+                    <button class="w-100 mb-5 sign-in-btn">
+                        Sign In
+                    </button>
+                <!-- </a> -->
             </div>
 
             <div class="bottom-content">
@@ -118,14 +105,51 @@
             </div>
 
             <script>
-                // Set a timeout to automatically hide the alert after 5 seconds
                 setTimeout(function () {
                     const alertElement = document.getElementById('error-alert');
                     if (alertElement) {
                         const bsAlert = new bootstrap.Alert(alertElement);
                         bsAlert.close();
                     }
-                }, 5000); // 5000ms = 5 seconds
+                }, 5000);
+
+                const signinBtn = document.querySelector(".top-content > button");
+                const signinWarning = document.querySelector("#signin-warning")
+                const closeSigninWarning = document.querySelector("#closeBtn")
+
+                function lockScroll() {
+                    document.body.style.overflow = 'hidden';
+                }
+
+                // Function to unlock scroll
+                function unlockScroll() {
+                    document.body.style.overflow = '';
+                }
+
+                function showDialog() {
+                    overlay.classList.add("show");
+                    signinWarning.classList.add("show");
+                    lockScroll();
+                }
+
+                function hideDialog() {
+                    signinWarning.classList.remove("show");
+                    overlay.classList.remove("show");
+                    unlockScroll();
+                }
+
+                signinBtn.addEventListener("click", () => {
+                    showDialog();
+                });
+
+                closeSigninWarning.addEventListener("click", () => {
+                    hideDialog();
+                });
+
+                overlay.addEventListener("click", () => {
+                    hideDialog();
+                });
+
             </script>
 
             <!-- End Example Code -->

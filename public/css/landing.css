@@ -3,6 +3,47 @@ body {
     background-color: #1a3c3c;
 }
 
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s 0.5s;
+    z-index: 1000; /* Ensure it's above other content but below the dialog */
+}
+
+/* Show Overlay */
+#overlay.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s;
+}
+
+#signin-warning {
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.25s ease-in-out, visibility 0s 0.5s;
+    z-index: 1100;
+}
+
+#signin-warning.show {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.25s ease-in-out, visibility 0s;
+}
+
 nav {
     background-color: #ddf8ff;
     color: #ccffff;
