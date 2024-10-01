@@ -1,7 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 import dotenv from 'dotenv';
-import pool from '../config/sessionDB.js';  // Import the pool
+import pool from '../config/sessionDB.js';
 
 dotenv.config();
 

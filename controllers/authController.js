@@ -13,9 +13,6 @@ passport.deserializeUser((user, done) => {
     done(null, user);
 })
 
-// check if a user exists first, if that is the case then just send an error message and then dont do anything
-// otherwise just add it to the db
-
 export default passport.use(
     new Strategy(
         {
@@ -26,12 +23,21 @@ export default passport.use(
 
             const srn = profile.email.includes("@pesu.pes.edu") ? profile.email.split('@')[0] : null;
 
+            console.log("Request user: ", profile)
+
             if (srn) {
                 const { data: existingUser, error: checkError } = await supabase.from("users").select("*").eq("srn", srn);
-                if (existingUser) {
+                console.log("existing user: ", existingUser);
+
+                if (existingUser.length != 0) {
                     console.log("User exists, give error");
                     return done(null, false, { message: "Account already exists, login from that account" })
                 }
+
+                if (existingUser[0].sub == profile.sub) {
+                    return done(null, profile);
+                }
+
             }
 
             console.log("User does not exist, adding user to db")
@@ -42,14 +48,6 @@ export default passport.use(
                 email: profile.email,
             })
             return done(null, profile);
-
-            // const { data, error } = await supabase.from("users").upsert({
-            //     sub: profile.sub,
-            //     srn: profile.email.split('@')[0],
-            //     name: profile.displayName,
-            //     email: profile.email,
-            // })
-            // done(null, profile);
 
         }
     )

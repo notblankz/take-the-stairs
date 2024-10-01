@@ -1,4 +1,3 @@
-// config/db.js
 import pg from "pg";
 import dotenv from "dotenv";
 
@@ -10,13 +9,8 @@ const pool = new pg.Pool({
     database: process.env.DB_NAME,
     password: process.env.DB_PASS,
     port: process.env.DB_PORT,
-    // changes
-    // ssl : {
-    //     rejectUnauthorized: false,
-    // }
 });
 
-// Handling connection errors
 pool.connect((err, client, release) => {
     if (err) {
         console.error("Error connecting to the database:", err);

@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const devices = await Html5Qrcode.getCameras()
         if (devices && devices.length) {
             const cameraID = devices.find(device => device.label.toLowerCase().includes("rear") || device.label.toLowerCase().includes("back")).id
-            // const cameraID = devices[0].id
             console.log(devices)
             const qrScanner = new Html5Qrcode("qrScanner")
 
