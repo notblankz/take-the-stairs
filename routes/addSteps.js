@@ -8,6 +8,14 @@ dotenv.config()
 const router = express.Router();
 const cryptr = new Cryptr(process.env.DECRYPT_SALT)
 
+router.get("/saveFloor/:encryptedFloor", (req, res) => {
+    if (req.isAuthenticated()) {
+        return res.redirect(`/`);
+    } else {
+        return res.redirect("/landing?error=Please%20Sign%20In%20to%20enter%20the%20challenge");
+    }
+});
+
 router.post("/saveFloor/:encryptedFloor", async (req, res) => {
     if (req.isAuthenticated()) {
         const scannedFloor = cryptr.decrypt(req.params.encryptedFloor);
