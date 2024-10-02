@@ -48,7 +48,7 @@ router.post("/saveFloor/:encryptedFloor", async (req, res) => {
         }
     } else {
         console.log("Get Authenticated first");
-        return res.redirect("/");
+        return res.redirect("/landing?error=Please%20Sign%20In%20to%20enter%20the%20challenge");
     }
 });
 
