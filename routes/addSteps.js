@@ -29,8 +29,9 @@ router.get("/saveFloor/:encryptedFloor", (req, res) => {
 router.post("/saveFloor/:encryptedFloor", async (req, res) => {
     if (req.isAuthenticated()) {
         // const scannedFloor = cryptr.decrypt(req.params.encryptedFloor);
+        let scannedFloor;
         try {
-            const scannedFloor = floorDecrypt[req.params.encryptedFloor]
+            scannedFloor = floorDecrypt[req.params.encryptedFloor]
         } catch (err) {
             return res.status(500).send("Invalid floor data")
         }
