@@ -9,13 +9,13 @@ const router = express.Router();
 // const cryptr = new Cryptr(process.env.DECRYPT_SALT)
 
 const floorDecrypt = {
-    "d0aea477d1" : 0,
-    "f1f9bbe0f3" : 1,
-    "79e41b0ae9" : 2,
-    "8c5017aa86" : 3,
-    "89c797a20f" : 4,
-    "e8ed2f7763" : 5,
-    "031a35e3bc" : 6,
+    "d0aea477d17c4b49b3f6" : 0,
+    "f1f9bbe0f3b06e835e48" : 1,
+    "79e41b0ae93d9261707f" : 2,
+    "8c5017aa86c41f834a90" : 3,
+    "89c797a20f48b88411aa" : 4,
+    "e8ed2f7763c55a068d0e" : 5,
+    "031a35e3bc6c32780b5a" : 6,
 }
 
 router.get("/saveFloor/:encryptedFloor", (req, res) => {
