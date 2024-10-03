@@ -32,8 +32,9 @@ router.post("/srnForm", async (req, res) => {
 
     const { data: existingUser, error: checkError } = await supabase.from("users").select().eq("srn", srn).single();
 
+    console.log("existing user from srnFrom: ", existingUser)
+
     if (existingUser) {
-        await supabase.from("users").delete().eq("sub", req.user.sub);
         return res.redirect("/landing?error=Account%20already%20exists%2C%20login%20from%20that%20account");
     } else {
         await supabase.from('users').insert({

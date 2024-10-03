@@ -23,11 +23,9 @@ export default passport.use(
 
             const srn = profile.email.includes("@pesu.pes.edu") ? profile.email.split('@')[0] : null;
 
-            console.log("Request user: ", profile)
-
             if (srn) {
                 const { data: existingUser, error: checkError } = await supabase.from("users").select("*").eq("srn", srn);
-                console.log("existing user: ", existingUser);
+                console.log("existing user from google: ", existingUser);
 
                 if (existingUser.length != 0) {
                     if (existingUser[0].sub == profile.sub) {
