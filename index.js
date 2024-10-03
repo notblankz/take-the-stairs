@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import cors from 'cors';
 import pool from './config/sessionDB.js';
+import { checkUserExists } from "./middleware/checkUserExists.js";  // Test code
 
 dotenv.config();
 
@@ -63,7 +64,7 @@ app.use('/', profileRouter);
 app.use('/', eventsRouter);
 app.use('/', leaderboardRouter);
 
-app.get('/', (req, res) => {
+app.get('/', checkUserExists, (req, res) => {
     if (req.isAuthenticated()) {
         res.render("index");
     } else {
