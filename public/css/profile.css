@@ -1,8 +1,7 @@
 body {
-    font-family: "Libre Baskerville", serif;
+    font-family: "Space Mono", monospace;
     font-weight: 400;
     color: #ddf8ff;
-    /* background-color: #001f3d; */
     background-color: #ddf8ff;
 }
 
@@ -13,13 +12,10 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    /* background-color: #001f3d; */
     background-color: #ddf8ff;
 }
 
 .step-count {
-    /* color: #005f8f; */
-    /* color: #001f3d; */
     color: #1a3c3c;
     font-size: 5em;
     position: relative;

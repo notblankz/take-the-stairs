@@ -57,14 +57,11 @@ nav {
 }
 
 .top-content {
-    /* background-color: #005f8f; */
     background-color: #ddf8ff;
-    /* color: #ccffff; */
     color: #073222;
 }
 
 .top-content > h1 {
-    /* color: #ffe16b; ardra */
     text-align: center;
     font-family: "Bricolage Grotesque", sans-serif;
     font-size: 2em;
@@ -88,8 +85,6 @@ nav {
 .bottom-content {
     background-color: #1a3c3c;
     color: #ddf8ff;
-    /* background-color: #265973; */
-    /* background-color: #03697b; ardra */
     color: #ccffff;
 }
 
@@ -101,7 +96,6 @@ nav {
     font-family: "Bricolage Grotesque", sans-serif;
     font-size: 2em;
     font-weight: 900;
-    /* color: #ffe16b; ardra */
 }
 
 .bottom-p {
@@ -112,5 +106,4 @@ nav {
 .event-heading {
     font-family: "Bricolage Grotesque", sans-serif;
     font-weight: 700;
-    /* color: #ffe16b; ardra */
 }
