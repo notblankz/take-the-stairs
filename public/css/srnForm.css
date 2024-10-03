@@ -1,49 +1,11 @@
-/* body {
-    border: 1px solid red;
-    font-family: "Space Mono", monospace;
-    background-color: #265973;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-h1 {
-    color: #ccffff;
-    font-family: "Bricolage Grotesque", sans-serif;
-    font-size: 2em;
-    font-weight: 900;
-}
-
-p {
-    color: #ccffff;
-}
-
-label {
-    color: #ccffff;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input {
-    background-color: #265973;
-    outline: 1px solid #ccffff;
-    border: none;
-}
-
-button {
-    background-color: #ccffff;
-    color: #265973;
-} */
-
 /* CSS for the SRN Form */
+/* dark color : #1a3c3c */
+/* light color : #ddf8ff */
 body {
-    background-color: #265973;
-    color: white;
-    font-family: 'Space Mono', monospace;
+    background-color: #1a3c3c;
+    color: #ddf8ff;
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,10 +25,11 @@ p {
 }
 
 form {
-    background-color: #327380;
+    color: white;
+    background-color: #1a3c3c;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
     width: 300px;
     display: flex;
     flex-direction: column;
@@ -79,7 +42,7 @@ label {
 }
 
 input[type="text"] {
-    background-color: #0b1d27;
+    background-color: #132b2b;
     color: white;
     border: none;
     padding: 10px;
@@ -94,8 +57,9 @@ input[type="text"]::placeholder {
 }
 
 button {
-    background-color: #b2e8f3;
-    color: black;
+    align-self: flex-end;
+    background-color: #ddf8ff;
+    color: #1a3c3c;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;

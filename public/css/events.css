@@ -6,7 +6,8 @@ main {
     background-color: #265973;
     color: #ccffff;
     margin-top: 75px;
-    font-family: "Space Mono", monospace;
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
 }
 
 ul {

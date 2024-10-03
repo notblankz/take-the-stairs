@@ -1,7 +1,8 @@
 body {
     background-color: #ddf8ff;
     color: #1a3c3c;
-    font-family: "Space Mono", monospace;
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
 }
 
 main {
