@@ -1,9 +1,9 @@
 body {
     font-family: "Libre Baskerville", serif;
     font-weight: 400;
-    color: #ccffff;
+    color: #ddf8ff;
     /* background-color: #001f3d; */
-    background-color: #265973;
+    background-color: #ddf8ff;
 }
 
 .custom-card {
@@ -14,13 +14,13 @@ body {
     align-items: center;
     padding: 10px;
     /* background-color: #001f3d; */
-    background-color: #265973;
+    background-color: #ddf8ff;
 }
 
 .step-count {
     /* color: #005f8f; */
     /* color: #001f3d; */
-    color: #ffe16b;
+    color: #1a3c3c;
     font-size: 5em;
     position: relative;
     padding-bottom: 50px;
@@ -43,7 +43,7 @@ body {
 }
 
 .detail-heading {
-    color: #83a4a9;
+    color: #72888c;
     font-size: 14px;
     margin: 0;
 }
@@ -54,10 +54,14 @@ body {
 }
 
 .logout-form > button {
-    /* background-color: #001f3d; */
-    background-color: #265973;
-    border: 1px solid #ccffff;
+    background-color: #1a3c3c;
+    border: none;
     color: #ccffff;
     padding-inline: 15px;
     padding-block: 7px;
-}
+    border-radius: 7px;
+  }
+
+  p {
+    color: #1a3c3c;
+  }
