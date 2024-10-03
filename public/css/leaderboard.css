@@ -14,30 +14,43 @@ main {
 
 h1 {
     text-align: center;
+    font-weight: 700;
 }
 
 .table-wrapper {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: center;
-    gap: 24px;
+    gap: 16px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 table {
+    font-size: 0.9em;
     width: 100%;
     text-align: center;
+    border-radius: 0 0 10px 10px;
 }
 
 tbody {
-    border: 1px solid #b09f9f;
+    border: 1px solid #e5e5e5;
+}
+
+th {
+    color: hsl(0deg 0% 65.83%);
 }
 
 td {
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 5px;
+}
+
+tr {
+    border-width: 1px;
 }
 
 a {
@@ -58,4 +71,84 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
 }
+
+/* body {
+    font-family: 'Space Mono', monospace;
+    background-color: #f8f9fa;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bold;
+    color: #333;
+}
+
+.table-wrapper {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.top-container h4 {
+    margin: 0;
+    color: #333;
+    font-weight: bold;
+}
+
+.top-container button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    color: #333;
+}
+
+table th {
+    background-color: #f0f0f0;
+    color: #555;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+}
+
+table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+button svg {
+    fill: #333;
+}
+
+button:hover svg {
+    fill: #007bff;
+} */
