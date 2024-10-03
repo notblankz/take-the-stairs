@@ -34,6 +34,13 @@ export default passport.use(
                     console.log("User exists, give error");
                     return done(null, false, { message: "Account already exists, login from that account" })
                 }
+
+                await supabase.from('users').insert({
+                    sub: profile.sub,
+                    srn: srn,
+                    name: profile.displayName,
+                    email: profile.email,
+                });
             }
 
             // console.log("User does not exist, adding user to db")

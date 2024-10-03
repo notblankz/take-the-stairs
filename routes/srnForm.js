@@ -43,9 +43,9 @@ router.post("/srnForm", async (req, res) => {
             name,
             email: req.user.email,
         });
+        return res.redirect("/");
     }
 
-    return res.redirect("/");
 });
 
 export default router

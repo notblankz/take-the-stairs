@@ -8,6 +8,16 @@ dotenv.config()
 const router = express.Router();
 const cryptr = new Cryptr(process.env.DECRYPT_SALT)
 
+// const floorDecrypt = {
+//     "d0aea477d1" : 0,
+//     "f1f9bbe0f3" : 1,
+//     "79e41b0ae9" : 2,
+//     "8c5017aa86" : 3,
+//     "89c797a20f" : 4,
+//     "e8ed2f7763" : 5,
+//     "031a35e3bc" : 6,
+// }
+
 router.get("/saveFloor/:encryptedFloor", (req, res) => {
     if (req.isAuthenticated()) {
         return res.redirect(`/`);
@@ -19,6 +29,7 @@ router.get("/saveFloor/:encryptedFloor", (req, res) => {
 router.post("/saveFloor/:encryptedFloor", async (req, res) => {
     if (req.isAuthenticated()) {
         const scannedFloor = cryptr.decrypt(req.params.encryptedFloor);
+        // const scannedFloor = floorDecrypt[req.params.encryptedFloor]
         const { data, error } = await supabase.from("users").select().eq('sub', req.user.sub);
 
         if (!data || error) {
