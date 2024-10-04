@@ -9,7 +9,7 @@ dotenv.config();
 const router = express.Router();
 
 function checkSRN(srn) {
-    const srnRegex = /^pes[12]ug(20|21|22|23|24)(cs|am|ec)(00[1-9]|0[1-9][0-9]|[1-6][0-9][0-9]|700)$/i;
+    const srnRegex = /(^PES2UG[20|21|22|23|24]{2}(?:(CS)|(EC)|(AM))(?!000)(?=\d{3})\d{3}(?!000)$)|(PES220[20|21|22|23|24]{2}(?!00000)(?=\d{5})\d{5}(?!00000))/gmi;
     return srnRegex.test(srn);
 }
 

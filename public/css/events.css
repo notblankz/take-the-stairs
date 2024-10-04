@@ -1,12 +1,12 @@
 body {
-    background-color: #265973;
+    background-color: #ddf8ff;
 }
 
 main {
-    background-color: #265973;
-    color: #ccffff;
+    background-color: #ddf8ff;
+    color: #1a3c3c;
     margin-top: 75px;
-    font-family: "Libre Baskerville", serif;
+    font-family: "Bricolage Grotesque", sans-serif;
     font-weight: 400;
 }
 
@@ -19,7 +19,6 @@ ul {
 }
 
 .event-heading {
-    /* color: #ffe16b; */
     font-size: 1.75em;
     font-family: "Bricolage Grotesque", sans-serif;
     font-weight: 700;
