@@ -62,7 +62,7 @@ router.post("/saveFloor/:encryptedFloor", async (req, res) => {
         } else {
             const initialFloor = data[0].floorState.initial;
             const climbedFloors = Math.abs(initialFloor - scannedFloor);
-            const steps = parseInt(data[0].stepCount) + (climbedFloors * 75);
+            const steps = parseInt(data[0].stepCount) + (climbedFloors * 26);
             const { error } = await supabase.from('users').update({ stepCount: steps, floorState: { initial: null, final: null } }).eq('sub', req.user.sub);
             if (error) {
                 console.log(error)
