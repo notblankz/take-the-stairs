@@ -43,16 +43,6 @@ export default passport.use(
                 });
             }
 
-            // console.log("User does not exist, adding user to db")
-            // const { data, error } = await supabase.from("users").upsert({
-            //     sub: profile.sub,
-            //     srn: profile.email.split('@')[0],
-            //     name: profile.displayName,
-            //     email: profile.email,
-            // })
-            // return done(null, profile);
-
-            //test code
             done(null, {...profile, srn});
 
         }

@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import cors from 'cors';
 import pool from './config/sessionDB.js';
-import { checkUserExists } from "./middleware/checkUserExists.js";  // Test code
+import { checkUserExists } from "./middleware/checkUserExists.js";
 
 dotenv.config();
 
